@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Hash;
@@ -10,12 +9,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegisterUsers;
 use Illuminate\Support\Str;
 
-class KelasController extends Controller
+class MapelController extends Controller
 {
-
-    public function getDataKelas(){
+    public function getDataMapel(){
         // $ambildata = DB::table('kelas')->first(); --> first(cmn nampilin yg pertama)
-         $ambildata = DB::table('kelas')->get();
+         $ambildata = DB::table('mapel')->get(); 
          if($ambildata){
           //   return response()->json(["Results"->
           //           ["ResultCode"->1, 
@@ -26,7 +24,7 @@ class KelasController extends Controller
          return response()->json(["User"=> "Gloria",
                                  "Waktu Akses"=> today(),
                                  //"result" => 1,
-                                 "DataKelas"=> $ambildata], 200);
+                                 "DataMapel"=> $ambildata], 200);
          }else {
              return response()->json(["Result"=>
              ["ResultCode"=>0,
@@ -36,10 +34,10 @@ class KelasController extends Controller
  
      }
      
-     public function getDataKelasById($idkelas){
+     public function getDataMapelById($idkelas){
          // $ambildata = DB::table('kelas')->first(); --> first(cmn nampilin yg pertama)
-          $ambildata = DB::table('kelas')
-          ->where('id_kelas',$idkelas)
+          $ambildata = DB::table('mapel')
+          ->where('id_mapel',$idmapel)
           ->get();
           if($ambildata){
            //   return response()->json(["Results"->
@@ -57,22 +55,18 @@ class KelasController extends Controller
           }
   
       }
-      public function insertDataKelas (request $request){
+      public function insertDataMapel (request $request){
          // DB::table('kelas')->insert([
          //     'kelas' => $request->input('kelas'),
          //     'jurusan' => $request->input('jurusan'),
          //     'sub'=> $request->input('sub')
          // ]);
-          $arr_kelas = array('kelas' => input('kelas'), 
-                             'jurusan' => input('jurusan'), 
-                             'sub' => input('sub')
+          $arr_mapel = array('nama_mapel' => input('nama_mapel'), 
+                             'deskripsi' => input('deskripsi')
+                             
          );
-          DB::table('kelas')->insert($arr_kelas);
+          DB::table('mapel')->insert($arr_mapel);
          
-        //   DB::insert('insert into kelas (rfid, nip, nama_guru, alamat, status_guru) values (?,?,?,?,?)', 
-        //      [$request->input('rfid'),$request->input('nip'),'nama_guru'=> $request->input('nama_guru'),
-        //      'alamat'=> $request->input('alamat'), 1]);
-        
          return response()->json(
              ["Result"=>
                 [
@@ -83,11 +77,10 @@ class KelasController extends Controller
             );
         }
  
-      public function updateDataKelas(request $request){
-          DB::table('kelas')->where('id_kelas', $request->input('id_kelas'))->update([
-              'kelas' => $request->input('kelas'),
-              'jurusan' => $request->input('jurusan'),
-              'sub'=> $request->input('sub')
+      public function updateDataMapel(request $request){
+          DB::table('mapel')->where('id_mapel', $request->input('id_mapel'))->update([
+              'nama_mapel' => $request->input('nama_mapel'),
+              'deskripsi' => $request->input('deskripsi')
           ]);
           return response()->json(
              ["Result"=>
@@ -99,12 +92,12 @@ class KelasController extends Controller
             );
       }
       
-      public function getDataKelasToken(){
+      public function getDataMapelToken(){
          $token = Str::random(60);
          $hash_token = hash('sha256', $token);
          print_r($token);exit;
          // $ambildata = DB::table('kelas')->first(); --> first(cmn nampilin yg pertama)
-          $ambildata1 = DB::table('kelas')->get();
+          $ambildata1 = DB::table('mapel')->get();
           if($ambildata1){
            //   return response()->json(["Results"->
            //           ["ResultCode"->1, 
@@ -124,9 +117,9 @@ class KelasController extends Controller
           }
   
       }
-      public function deleteDataKelas(request $request){
-         dd($request->input('id_kelas'));
-          DB::table('kelas')->where('id_kelas', $request->input('id_kelas'))->delete();
+      public function deleteDataMapel(request $request){
+         dd($request->input('id_mapel'));
+          DB::table('mapel')->where('id_mapel', $request->input('id_mapel'))->delete();
           
           return response()->json(
              ["Result"=>
@@ -138,9 +131,9 @@ class KelasController extends Controller
             );
       }
 
-      public function deleteDataKelasParam($id){
+      public function deleteDataMapelParam($id){
          dd($id);
-         DB::table('kelas')->where('id_kelas', $id)->delete();
+         DB::table('mapel')->where('id_mapel', $id)->delete();
          return response()->json(
             ["Result"=>
                [
@@ -151,4 +144,4 @@ class KelasController extends Controller
            );
      }
      
- }
+}

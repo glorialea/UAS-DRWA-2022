@@ -10,12 +10,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegisterUsers;
 use Illuminate\Support\Str;
 
-class KelasController extends Controller
+class PresensiHarianController extends Controller
 {
-
-    public function getDataKelas(){
+    public function getDataPresensiHarian(){
         // $ambildata = DB::table('kelas')->first(); --> first(cmn nampilin yg pertama)
-         $ambildata = DB::table('kelas')->get();
+         $ambildata = DB::table('presensi_harian')->get(); 
          if($ambildata){
           //   return response()->json(["Results"->
           //           ["ResultCode"->1, 
@@ -26,7 +25,7 @@ class KelasController extends Controller
          return response()->json(["User"=> "Gloria",
                                  "Waktu Akses"=> today(),
                                  //"result" => 1,
-                                 "DataKelas"=> $ambildata], 200);
+                                 "DataGuru"=> $ambildata], 200);
          }else {
              return response()->json(["Result"=>
              ["ResultCode"=>0,
@@ -36,10 +35,10 @@ class KelasController extends Controller
  
      }
      
-     public function getDataKelasById($idkelas){
+     public function getDataPresensiHarianById($idpresensiharian){
          // $ambildata = DB::table('kelas')->first(); --> first(cmn nampilin yg pertama)
-          $ambildata = DB::table('kelas')
-          ->where('id_kelas',$idkelas)
+          $ambildata = DB::table('presensi_harian')
+          ->where('id_presensi_harian',$idpresensiharian)
           ->get();
           if($ambildata){
            //   return response()->json(["Results"->
@@ -57,22 +56,25 @@ class KelasController extends Controller
           }
   
       }
-      public function insertDataKelas (request $request){
+      public function insertDataPresensiHarian (request $request){
          // DB::table('kelas')->insert([
          //     'kelas' => $request->input('kelas'),
          //     'jurusan' => $request->input('jurusan'),
          //     'sub'=> $request->input('sub')
          // ]);
-          $arr_kelas = array('kelas' => input('kelas'), 
-                             'jurusan' => input('jurusan'), 
-                             'sub' => input('sub')
+          $arr_PresensiHarian = array('tahun_akademik' => input('tahun_akademik'), 
+                             'semester' => input('semester'), 
+                             'tanggal' => input('tanggal'), 
+                             'hari' => input('hari'), 
+                             'id_guru' => input('id_guru'),
+                             'jam_masuk' => input('jam_masuk'), 
+                             'jam_pulang' => input('jam_pulang'),
+                             'metode' => input('metode'),
+                             'keterangan' => input('keterangan')    
+                             
          );
-          DB::table('kelas')->insert($arr_kelas);
+          DB::table('presensi_harian')->insert($arr_PresensiHarian);
          
-        //   DB::insert('insert into kelas (rfid, nip, nama_guru, alamat, status_guru) values (?,?,?,?,?)', 
-        //      [$request->input('rfid'),$request->input('nip'),'nama_guru'=> $request->input('nama_guru'),
-        //      'alamat'=> $request->input('alamat'), 1]);
-        
          return response()->json(
              ["Result"=>
                 [
@@ -83,11 +85,17 @@ class KelasController extends Controller
             );
         }
  
-      public function updateDataKelas(request $request){
-          DB::table('kelas')->where('id_kelas', $request->input('id_kelas'))->update([
-              'kelas' => $request->input('kelas'),
-              'jurusan' => $request->input('jurusan'),
-              'sub'=> $request->input('sub')
+      public function updateDataPresensiHarian(request $request){
+          DB::table('presensi_harian')->where('id_presensi_harian', $request->input('id_presensi_harian'))->update([
+              'tahun_akademik' => $request->input('tahun_akademik'),
+              'semester' => $request->input('semester'),
+              'tanggal' => $request->input('tanggal'),
+              'hari' => $request->input('hari'),
+              'id_guru' => $request->input('id_guru'),
+              'jam_masuk' => $request->input('jam_masuk'),
+              'jam_pulang' => $request->input('jam_pulang'),
+              'metode' => $request->input('metode'),
+              'keterangan' => $request->input('keterangan')
           ]);
           return response()->json(
              ["Result"=>
@@ -99,12 +107,12 @@ class KelasController extends Controller
             );
       }
       
-      public function getDataKelasToken(){
+      public function getDataPresensiHarianToken(){
          $token = Str::random(60);
          $hash_token = hash('sha256', $token);
          print_r($token);exit;
          // $ambildata = DB::table('kelas')->first(); --> first(cmn nampilin yg pertama)
-          $ambildata1 = DB::table('kelas')->get();
+          $ambildata1 = DB::table('presensi_harian')->get();
           if($ambildata1){
            //   return response()->json(["Results"->
            //           ["ResultCode"->1, 
@@ -124,9 +132,9 @@ class KelasController extends Controller
           }
   
       }
-      public function deleteDataKelas(request $request){
-         dd($request->input('id_kelas'));
-          DB::table('kelas')->where('id_kelas', $request->input('id_kelas'))->delete();
+      public function deleteDataPresensiHarian(request $request){
+         dd($request->input('id_presensi_harian'));
+          DB::table('presensi_harian')->where('id_presensi_harian', $request->input('id_presensi_harian'))->delete();
           
           return response()->json(
              ["Result"=>
@@ -138,9 +146,9 @@ class KelasController extends Controller
             );
       }
 
-      public function deleteDataKelasParam($id){
+      public function deleteDataPresensiHarianParam($id){
          dd($id);
-         DB::table('kelas')->where('id_kelas', $id)->delete();
+         DB::table('presensi_harian')->where('id_presensi_harian', $id)->delete();
          return response()->json(
             ["Result"=>
                [
@@ -151,4 +159,4 @@ class KelasController extends Controller
            );
      }
      
- }
+}
