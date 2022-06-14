@@ -72,7 +72,7 @@ class JadwalGuruController extends Controller
                              'jam_selesai' => input('jam_selesai')
                              
          );
-          DB::table('jadwal_guru')->insert($arr_mapel);
+          DB::table('jadwal_guru')->insert($arr_jadwal);
          
          return response()->json(
              ["Result"=>
