@@ -25,7 +25,7 @@ class GuruController extends Controller
          return response()->json(["User"=> "Gloria",
                                  "Waktu Akses"=> today(),
                                  //"result" => 1,
-                                 "DataGuru"=> $ambildata], 200);
+                                 "Data Guru"=> $ambildata], 200);
          }else {
              return response()->json(["Result"=>
              ["ResultCode"=>0,

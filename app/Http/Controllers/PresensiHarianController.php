@@ -25,7 +25,7 @@ class PresensiHarianController extends Controller
          return response()->json(["User"=> "Gloria",
                                  "Waktu Akses"=> today(),
                                  //"result" => 1,
-                                 "DataGuru"=> $ambildata], 200);
+                                 "Data Presensi Harian"=> $ambildata], 200);
          }else {
              return response()->json(["Result"=>
              ["ResultCode"=>0,

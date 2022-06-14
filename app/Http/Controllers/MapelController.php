@@ -24,7 +24,7 @@ class MapelController extends Controller
          return response()->json(["User"=> "Gloria",
                                  "Waktu Akses"=> today(),
                                  //"result" => 1,
-                                 "DataMapel"=> $ambildata], 200);
+                                 "Data Mapel"=> $ambildata], 200);
          }else {
              return response()->json(["Result"=>
              ["ResultCode"=>0,

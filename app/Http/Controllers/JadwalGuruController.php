@@ -25,7 +25,7 @@ class JadwalGuruController extends Controller
          return response()->json(["User"=> "Gloria",
                                  "Waktu Akses"=> today(),
                                  //"result" => 1,
-                                 "DataJadwal"=> $ambildata], 200);
+                                 "Data Jadwal"=> $ambildata], 200);
          }else {
              return response()->json(["Result"=>
              ["ResultCode"=>0,

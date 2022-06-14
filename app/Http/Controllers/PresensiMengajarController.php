@@ -117,7 +117,7 @@ class PresensiMengajarController extends Controller
           return response()->json(["User"=> "Gloria",
                                   "Waktu Akses"=> today(),
                                   //"result" => 1,
-                                  "DataKelas"=> $ambildata1], 250);
+                                  "Data Presensi Mengajar"=> $ambildata1], 250);
           }else {
               return response()->json(["Result"=>
               ["ResultCode"=>0,

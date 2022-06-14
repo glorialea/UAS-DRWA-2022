@@ -115,7 +115,7 @@ class KelasController extends Controller
           return response()->json(["User"=> "Gloria",
                                   "Waktu Akses"=> today(),
                                   //"result" => 1,
-                                  "DataKelas"=> $ambildata1], 250);
+                                  "Data Kelas"=> $ambildata1], 250);
           }else {
               return response()->json(["Result"=>
               ["ResultCode"=>0,
